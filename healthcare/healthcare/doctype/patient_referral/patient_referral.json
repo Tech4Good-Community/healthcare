@@ -1,0 +1,160 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-01-02 12:28:58.536353",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "patient_details_section",
+  "patient_details",
+  "date",
+  "location",
+  "patient_name",
+  "sex",
+  "column_break_vvnx",
+  "native_state",
+  "unit",
+  "occupation",
+  "age",
+  "phone",
+  "referral_details_section",
+  "referred_to",
+  "type_of_phi",
+  "name_of_phi",
+  "referral_category",
+  "column_break_uumk",
+  "diagnosis"
+ ],
+ "fields": [
+  {
+   "fieldname": "patient_details",
+   "fieldtype": "Link",
+   "label": "Patient Details",
+   "options": "Patient"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fetch_from": ".",
+   "fieldname": "location",
+   "fieldtype": "Select",
+   "label": "Location",
+   "options": "\n80 cent colony\nAirapuram\nAllapra\nAluva\nAmbalamugal\nArakkapady\nBinanipuram\nBM Nagar\nBPCL\nBrahmapuram\nChembarakky\nCherakuzhy\nCheruvelikunnu\nChittethukara\nEdachira\nEdakochi\nEdappally\nInfo Park\nIrumbanam\nKakkanad\nKalady\nKalamassery\nKandanthara\nKanjoor\nKarimugal\nKeezhilam\nKombara\nKottachira\nKundanoor\nKuttipadam\nMalamrui\nMalamuri\nMarampilly\nMattanchery\nMattoor"
+  },
+  {
+   "fetch_from": "patient_details.patient_name",
+   "fieldname": "patient_name",
+   "fieldtype": "Data",
+   "label": "Patient Name"
+  },
+  {
+   "fieldname": "column_break_vvnx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "patient_details.native_state",
+   "fieldname": "native_state",
+   "fieldtype": "Data",
+   "label": "Native State"
+  },
+  {
+   "fieldname": "unit",
+   "fieldtype": "Select",
+   "label": "Unit",
+   "options": "\nWC-MC\nBP-MC"
+  },
+  {
+   "fetch_from": "patient_details.occupation",
+   "fieldname": "occupation",
+   "fieldtype": "Data",
+   "label": "Occupation"
+  },
+  {
+   "fetch_from": "patient_details.patient_age",
+   "fieldname": "age",
+   "fieldtype": "Int",
+   "label": "Age"
+  },
+  {
+   "fieldname": "patient_details_section",
+   "fieldtype": "Section Break",
+   "label": "Patient Details"
+  },
+  {
+   "fetch_from": "patient_details.sex",
+   "fieldname": "sex",
+   "fieldtype": "Data",
+   "label": "Sex"
+  },
+  {
+   "fetch_from": "patient_details.phone",
+   "fieldname": "phone",
+   "fieldtype": "Data",
+   "label": "Phone ",
+   "options": "Phone"
+  },
+  {
+   "fieldname": "referral_details_section",
+   "fieldtype": "Section Break",
+   "label": "Referral Details"
+  },
+  {
+   "fieldname": "referred_to",
+   "fieldtype": "Data",
+   "label": "Referred To"
+  },
+  {
+   "fieldname": "type_of_phi",
+   "fieldtype": "Select",
+   "label": "Type of PHI",
+   "options": "\nCHC\nDH\nFHC\nGH\nMCH\nPHC\nTHQH\nUPHC\nOther"
+  },
+  {
+   "fieldname": "name_of_phi",
+   "fieldtype": "Select",
+   "label": "Name of PHI",
+   "options": "\nAsamannoor\nBinanipuram\nChampakkara\nEdakochi\nEdappally\nEdathala\nEloor\nErnakulam\nKalamassery\nKakkanad\nKalady\nKalamassery\nKanjoor\nLaboratory\nMalipuram\nMangattumukku\nMazhuvannoor\nMulavukad\nMunambam\nMuvattupuzha\nPaipra\nPathalam\nPattimattom\nPerumbavoor\nRayamangalam\nSreemoolanagaram\nTHQH Aluva\nTHQH Karuvelipady\nThrikakkara\nVadavukodu\nValanthakadu\nVarapuzha\nVazhakkulam\nVengola\nOthers"
+  },
+  {
+   "fieldname": "referral_category",
+   "fieldtype": "Data",
+   "label": "Referral Category"
+  },
+  {
+   "fieldname": "column_break_uumk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "diagnosis",
+   "fieldtype": "Long Text",
+   "label": "Diagnosis"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-01-02 12:48:48.176828",
+ "modified_by": "Administrator",
+ "module": "Healthcare",
+ "name": "Patient Referral",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

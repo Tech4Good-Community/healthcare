@@ -12,34 +12,27 @@
  "field_order": [
   "basic_info",
   "naming_series",
-  "first_name",
-  "middle_name",
-  "last_name",
+  "full_name",
   "patient_name",
   "sex",
   "blood_group",
   "dob",
-  "age_html",
+  "patient_age",
   "image",
+  "native_state",
+  "date_of_delivery",
   "column_break_14",
   "status",
   "uid",
   "inpatient_record",
   "inpatient_status",
-  "report_preference",
   "mobile",
   "phone",
   "email",
   "invite_user",
   "user_id",
-  "customer_details_section",
-  "customer",
-  "customer_group",
-  "territory",
-  "column_break_24",
-  "default_currency",
-  "default_price_list",
-  "language",
+  "sector_of_employement",
+  "place_of_delivery",
   "more_info",
   "patient_details",
   "dashboard_tab",
@@ -118,10 +111,10 @@
   },
   {
    "fieldname": "sex",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "in_preview": 1,
    "label": "Gender",
-   "options": "Gender",
+   "options": "Male\nFemale\nOther",
    "reqd": 1
   },
   {
@@ -140,15 +133,6 @@
    "in_preview": 1,
    "label": "Date of birth",
    "no_copy": 1
-  },
-  {
-   "fieldname": "age_html",
-   "fieldtype": "HTML",
-   "label": "Age",
-   "no_copy": 1,
-   "print_hide": 1,
-   "read_only": 1,
-   "report_hide": 1
   },
   {
    "fieldname": "status",
@@ -174,22 +158,6 @@
   {
    "fieldname": "column_break_14",
    "fieldtype": "Column Break"
-  },
-  {
-   "description": "If \"Link Customer to Patient\" is checked in Healthcare Settings and an existing Customer is not selected then, a Customer will be created for this Patient for recording transactions in Accounts module.",
-   "fieldname": "customer",
-   "fieldtype": "Link",
-   "ignore_user_permissions": 1,
-   "label": "Customer",
-   "no_copy": 1,
-   "options": "Customer",
-   "set_only_once": 1
-  },
-  {
-   "fieldname": "report_preference",
-   "fieldtype": "Select",
-   "label": "Report Preference",
-   "options": "\nEmail\nPrint"
   },
   {
    "bold": 1,
@@ -358,66 +326,6 @@
    "no_copy": 1
   },
   {
-   "fieldname": "default_currency",
-   "fieldtype": "Link",
-   "label": "Billing Currency",
-   "options": "Currency"
-  },
-  {
-   "fieldname": "last_name",
-   "fieldtype": "Data",
-   "label": "Last Name",
-   "no_copy": 1
-  },
-  {
-   "fieldname": "first_name",
-   "fieldtype": "Data",
-   "label": "First Name",
-   "no_copy": 1,
-   "oldfieldtype": "Data",
-   "reqd": 1
-  },
-  {
-   "fieldname": "middle_name",
-   "fieldtype": "Data",
-   "label": "Middle Name (optional)",
-   "no_copy": 1
-  },
-  {
-   "collapsible": 1,
-   "fieldname": "customer_details_section",
-   "fieldtype": "Section Break",
-   "label": "Customer Details"
-  },
-  {
-   "fieldname": "customer_group",
-   "fieldtype": "Link",
-   "label": "Customer Group",
-   "options": "Customer Group"
-  },
-  {
-   "fieldname": "territory",
-   "fieldtype": "Link",
-   "label": "Territory",
-   "options": "Territory"
-  },
-  {
-   "fieldname": "column_break_24",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "default_price_list",
-   "fieldtype": "Link",
-   "label": "Default Price List",
-   "options": "Price List"
-  },
-  {
-   "fieldname": "language",
-   "fieldtype": "Link",
-   "label": "Print Language",
-   "options": "Language"
-  },
-  {
    "depends_on": "eval:!doc.__islocal",
    "fieldname": "address_contacts",
    "fieldtype": "Section Break",
@@ -483,16 +391,54 @@
    "fieldname": "medical_history_tab",
    "fieldtype": "Tab Break",
    "label": "Medical History"
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name",
+   "no_copy": 1,
+   "oldfieldtype": "Data",
+   "reqd": 1
+  },
+  {
+   "fieldname": "native_state",
+   "fieldtype": "Select",
+   "label": "Native State",
+   "options": "\nAndhra Pradesh\nAssam\nBihar\nBihar\nJharkhand\nKarnataka\nKerala\nOdisha\nRajasthan\nTamil Nadu\nUttar Pradesh\nWest Bengal\nOther"
+  },
+  {
+   "fieldname": "sector_of_employement",
+   "fieldtype": "Data",
+   "label": "Sector of Employement"
+  },
+  {
+   "fieldname": "date_of_delivery",
+   "fieldtype": "Date",
+   "label": "Date of Delivery"
+  },
+  {
+   "fieldname": "place_of_delivery",
+   "fieldtype": "Select",
+   "label": "Place of Delivery",
+   "options": "\n80 cent colony\nAirapuram\nAllapra\nAluva\nAmbalamugal\nArakkapady\nBinanipuram\nBM Nagar\nBPCL\nBrahmapuram\nChembarakky\nCherakuzhy\nCheruvelikunnu\nChittethukara\nEdachira\nEdakochi\nEdappally\nInfo Park\nIrumbanam\nKakkanad\nKalady\nKalamassery\nKandanthara\nKanjoor\nKarimugal\nKeezhilam\nKombara\nKottachira\nKundanoor\nKuttipadam\nMalamrui\nMalamuri\nMarampilly\nMattanchery\nMattoor\nMavinchuvadu\nMazhuvannoor\nMekalady\nMethala\nMudickal\nMulavoor\nMulavukadu\nMunambam\nMuppathadam\nMuvattupuzha\nNellimolam\nNettoor\nNjarakkal\nOdakkali\nOrna\nPaipra\nPallikavala\nPalluruthy\nPanipra\nPathadipaalam\nPathalam\nPattimattom\nPeechinamukal\nPerumbavoor\nPerumbavoor Bus Stand\nPezhakapilly\nPonnarimangalam\nPulluvazhy\nRandaaru\nRavipuram\nSreemoolanagaram\nThandirikkal Colony\nTharamaly\nThoppumpady\nThottapadan Kavala\nThriveni\nTKM Plywood\nValayanchirangara\nVallam\nVarapuzha\nVathuruthty\nVattakatupady\nVypin\nVytilla\nW Island\nOther"
+  },
+  {
+   "fieldname": "patient_age",
+   "fieldtype": "Int",
+   "label": "Age",
+   "print_hide": 1,
+   "report_hide": 1
   }
  ],
  "icon": "fa fa-user",
  "image_field": "image",
  "links": [],
  "max_attachments": 50,
- "modified": "2023-01-13 17:48:59.069268",
+ "modified": "2024-01-02 12:41:06.666295",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Patient",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {

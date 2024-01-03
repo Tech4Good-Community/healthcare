@@ -1,0 +1,97 @@
+{
+ "actions": [],
+ "creation": "2024-01-02 14:51:48.825643",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "test_details_section",
+  "test_name",
+  "test_result",
+  "patient_complaints",
+  "diagnosis_category",
+  "type_of_services",
+  "treatment",
+  "column_break_mtrn",
+  "on_examination",
+  "diagnosis",
+  "interventions"
+ ],
+ "fields": [
+  {
+   "fieldname": "test_details_section",
+   "fieldtype": "Section Break",
+   "label": "Test Details"
+  },
+  {
+   "fieldname": "test_name",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Test Name",
+   "options": "\nDengue\nMalaria\nLeptospira\nCOVID RAT\nRandom Blood Sugar\nBlood Preasure\nBody Temperature\nOxygen Saturation\nPulse Rate"
+  },
+  {
+   "fieldname": "test_result",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Test Result",
+   "options": "\nDengue Negative\nDengue Positive\nMalaria Negative\nMalaria Positive\nLeptospira Negative\nLeptospira Positive\nCOVID RAT Negative\nCOVID RAT Positive\nRecord Level"
+  },
+  {
+   "fieldname": "patient_complaints",
+   "fieldtype": "Data",
+   "label": "Patient Complaints"
+  },
+  {
+   "fieldname": "column_break_mtrn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "on_examination",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "On Examination"
+  },
+  {
+   "fieldname": "diagnosis_category",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Diagnosis Category",
+   "options": "\nAsymptomatic\tHealth education\nBurn\tRMNCH-A\nDental Ailment\tTreatment for CD\nENT\tTreatment for NCD\nFever\tOther services\nGastro Intestinal\nHeadache\nHypertension\nHypotension\nSkin Infections\nMuscloskeletal\nObstetrics and Gynaecology\nOphthalmology\nOrtho\nPrehypertension\nRespiratory Issues\nUTI\nWound\nOther"
+  },
+  {
+   "fieldname": "diagnosis",
+   "fieldtype": "Long Text",
+   "label": "Diagnosis"
+  },
+  {
+   "fieldname": "type_of_services",
+   "fieldtype": "Select",
+   "label": "Type of Services",
+   "options": "\nHealth education\nRMNCH-A\nTreatment for CD\nTreatment for NCD\nOther services"
+  },
+  {
+   "fieldname": "treatment",
+   "fieldtype": "Data",
+   "label": "Treatment"
+  },
+  {
+   "fieldname": "interventions",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Interventions",
+   "options": "\nDiagnostic Services\nDressing/Other Procedures\nFP Services\nHealth Education\nImmunisation\nReferred for laboratory Tests\nReferred to Sec/tertiary care\nTreatment Services"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-01-02 16:17:53.359262",
+ "modified_by": "Administrator",
+ "module": "Healthcare",
+ "name": "Patient Test",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

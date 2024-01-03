@@ -16,23 +16,26 @@ class PatientEncounter(Document):
 	def validate(self):
 		self.set_title()
 		self.validate_medications()
-		self.validate_therapies()
-		self.validate_observations()
+		#self.validate_therapies()
+		#self.validate_observations()
 		set_codification_table_from_diagnosis(self)
+		'''
 		if not self.is_new() and self.submit_orders_on_save:
 			self.make_service_request()
 			self.make_medication_request()
 			self.status = "Ordered"
-
+		'''
 	def on_update(self):
 		if self.appointment:
 			frappe.db.set_value("Patient Appointment", self.appointment, "status", "Closed")
 
 	def on_submit(self):
+		'''
 		if self.therapies:
 			create_therapy_plan(self)
-		self.make_service_request()
-		self.make_medication_request()
+		'''
+		#self.make_service_request()
+		#self.make_medication_request()
 		# to save service_request name in prescription
 		self.save("Update")
 		self.db_set("status", "Completed")
@@ -104,7 +107,7 @@ class PatientEncounter(Document):
 		plans = frappe.get_list("Treatment Plan Template", fields="*", filters=plan_filters)
 
 		return plans
-
+	'''
 	@frappe.whitelist()
 	def set_treatment_plans(self, treatment_plans=None):
 		for treatment_plan in treatment_plans:
@@ -134,7 +137,7 @@ class PatientEncounter(Document):
 
 		if plan_item.type == "Observation Template":
 			self.append("lab_test_prescription", {"observation_template": plan_item.template})
-
+	'''
 	def validate_medications(self):
 		if not self.drug_prescription:
 			return
@@ -144,7 +147,7 @@ class PatientEncounter(Document):
 				frappe.throw(
 					_("Row #{0} (Drug Prescription): Medication or Item Code is mandatory").format(item.idx)
 				)
-
+	'''
 	def validate_therapies(self):
 		if not self.therapies:
 			return
@@ -267,7 +270,7 @@ class PatientEncounter(Document):
 		order.update({"order_description": description})
 		return order
 
-
+	'''
 @frappe.whitelist()
 def make_ip_medication_order(source_name, target_doc=None):
 	def set_missing_values(source, target):
@@ -319,7 +322,7 @@ def get_prescription_dates(period, start_date):
 	for i in range(1, days):
 		dates.append(add_days(getdate(start_date), i))
 	return dates
-
+'''
 
 def create_therapy_plan(encounter):
 	if len(encounter.therapies):
@@ -337,7 +340,7 @@ def create_therapy_plan(encounter):
 			frappe.msgprint(
 				_("Therapy Plan {0} created successfully.").format(frappe.bold(doc.name)), alert=True
 			)
-
+'''
 
 def delete_ip_medication_order(encounter):
 	record = frappe.db.exists("Inpatient Medication Order", {"patient_encounter": encounter.name})

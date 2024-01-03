@@ -4,23 +4,22 @@
  "creation": "2016-09-16 16:41:45.533374",
  "doctype": "DocType",
  "document_type": "Document",
- "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "drug_id",
-  "medication",
   "drug_name",
-  "strength",
-  "strength_uom",
   "dosage_form",
-  "column_break_7",
-  "dosage_by_interval",
   "dosage",
+  "period",
+  "precribed_quantity",
+  "medication",
+  "column_break_7",
+  "strength",
+  "dosage_by_interval",
   "interval",
   "interval_uom",
-  "period",
+  "strength_uom",
   "number_of_repeats_allowed",
-  "precribed_quantity",
   "section_break_u9av",
   "intent",
   "priority",
@@ -77,7 +76,6 @@
    "fieldname": "comment",
    "fieldtype": "Small Text",
    "ignore_xss_filter": 1,
-   "in_list_view": 1,
    "label": "Comment"
   },
   {
@@ -86,7 +84,6 @@
    "fetch_if_empty": 1,
    "fieldname": "interval",
    "fieldtype": "Int",
-   "in_list_view": 1,
    "label": "Interval",
    "mandatory_depends_on": "eval:doc.dosage_by_interval"
   },
@@ -106,7 +103,6 @@
    "fetch_if_empty": 1,
    "fieldname": "interval_uom",
    "fieldtype": "Select",
-   "in_list_view": 1,
    "label": "Interval UOM",
    "mandatory_depends_on": "eval:doc.dosage_by_interval",
    "options": "\nHour\nDay"
@@ -114,7 +110,6 @@
   {
    "fieldname": "medication",
    "fieldtype": "Link",
-   "in_list_view": 1,
    "label": "Medication",
    "options": "Medication"
   },
@@ -176,18 +171,20 @@
   {
    "fieldname": "precribed_quantity",
    "fieldtype": "Int",
+   "in_list_view": 1,
    "label": "Precribed Quantity"
   },
   {
    "fieldname": "drug_id",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Drug Id",
    "options": "Item"
   }
  ],
  "istable": 1,
  "links": [],
- "modified": "2023-12-13 16:41:59.052238",
+ "modified": "2024-01-02 16:17:01.952245",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Drug Prescription",

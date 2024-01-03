@@ -25,10 +25,10 @@ frappe.ui.form.on('Patient Encounter', {
 	},
 
 	setup: function(frm) {
-		frm.get_field('therapies').grid.editable_fields = [
+		/*frm.get_field('therapies').grid.editable_fields = [
 			{fieldname: 'therapy_type', columns: 8},
 			{fieldname: 'no_of_sessions', columns: 2}
-		];
+		];*/
 		frm.get_field('drug_prescription').grid.editable_fields = [
 			{fieldname: 'drug_code', columns: 2},
 			{fieldname: 'drug_name', columns: 2},
@@ -72,8 +72,8 @@ frappe.ui.form.on('Patient Encounter', {
 
 			if (frm.doc.docstatus == 1 && (
 				(frm.doc.lab_test_prescription && frm.doc.lab_test_prescription.length>0) ||
-				(frm.doc.procedure_prescription && frm.doc.procedure_prescription.length>0) ||
-				(frm.doc.therapies && frm.doc.therapies.length>0)
+				(frm.doc.procedure_prescription && frm.doc.procedure_prescription.length>0) 
+				//(frm.doc.therapies && frm.doc.therapies.length>0)
 				)) {
 				frm.add_custom_button(__('Service Request'), function() {
 					create_service_request(frm);
@@ -174,7 +174,8 @@ frappe.ui.form.on('Patient Encounter', {
 				};
 			});
 		}
-		var table_list =  ["drug_prescription", "lab_test_prescription", "procedure_prescription", "therapies"]
+		//var table_list =  ["drug_prescription", "lab_test_prescription", "procedure_prescription", "therapies"]
+		var table_list =  ["drug_prescription", "lab_test_prescription", "procedure_prescription"]
 		apply_code_sm_filter_to_child(frm, "priority", table_list, "Priority")
 		apply_code_sm_filter_to_child(frm, "intent", table_list, "Intent")
 	},

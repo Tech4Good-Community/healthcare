@@ -26,18 +26,19 @@ from healthcare.healthcare.doctype.healthcare_settings.healthcare_settings impor
 
 
 class Patient(Document):
+	'''
 	def onload(self):
 		"""Load address and contacts in `__onload`"""
 		load_address_and_contact(self)
 		self.load_dashboard_info()
-
+	'''
 	def validate(self):
 		self.set_full_name()
 		self.flags.is_new_doc = self.is_new()
-		self.flags.existing_customer = self.is_new() and bool(self.customer)
+		#self.flags.existing_customer = self.is_new() and bool(self.customer)
 
-	def before_insert(self):
-		self.set_missing_customer_details()
+	#def before_insert(self):
+		#self.set_missing_customer_details()
 
 	def after_insert(self):
 		if frappe.db.get_single_value("Healthcare Settings", "collect_registration_fee"):
@@ -45,7 +46,7 @@ class Patient(Document):
 		else:
 			send_registration_sms(self)
 		self.reload()
-
+	'''
 	def on_update(self):
 		if frappe.db.get_single_value("Healthcare Settings", "link_customer_to_patient"):
 			if self.customer:
@@ -71,13 +72,14 @@ class Patient(Document):
 		if self.customer:
 			info = get_dashboard_info("Customer", self.customer, None)
 			self.set_onload("dashboard_info", info)
-
+	'''
 	def set_full_name(self):
-		if self.last_name:
-			self.patient_name = " ".join(filter(None, [self.first_name, self.last_name]))
-		else:
-			self.patient_name = self.first_name
+		#if self.last_name:
+			#self.patient_name = " ".join(filter(None, [self.first_name, self.last_name]))
+		#else:
+		self.patient_name = self.full_name
 
+	'''
 	def set_missing_customer_details(self):
 		if not self.customer_group:
 			self.customer_group = frappe.db.get_single_value(
@@ -102,7 +104,7 @@ class Patient(Document):
 			self.default_currency = get_default_currency()
 		if not self.language:
 			self.language = frappe.db.get_single_value("System Settings", "language")
-
+	'''
 	def create_website_user(self):
 		users = frappe.db.get_all(
 			"User",
@@ -120,8 +122,8 @@ class Patient(Document):
 		user = frappe.get_doc(
 			{
 				"doctype": "User",
-				"first_name": self.first_name,
-				"last_name": self.last_name,
+				"first_name": self.full_name,
+				#"last_name": self.last_name,
 				"email": self.email,
 				"user_type": "Website User",
 				"gender": self.sex,
@@ -172,7 +174,7 @@ class Patient(Document):
 			return
 		age_str = f'{str(age.years)} {_("Year(s)")} {str(age.months)} {_("Month(s)")} {str(age.days)} {_("Day(s)")}'
 		return age_str
-
+	'''
 	@frappe.whitelist()
 	def invoice_patient_registration(self):
 		if frappe.db.get_single_value("Healthcare Settings", "registration_fee"):
@@ -210,8 +212,8 @@ class Patient(Document):
 					contact = frappe.get_doc(
 						{
 							"doctype": "Contact",
-							"first_name": self.first_name,
-							"middle_name": self.middle_name,
+							"first_name": self.full_name,
+							#"middle_name": self.middle_name,
 							"last_name": self.last_name,
 							"gender": self.sex,
 							"is_primary_contact": 1,
@@ -293,7 +295,6 @@ class Patient(Document):
 		)
 		self.notify_update()
 
-
 def create_customer(doc):
 	customer = frappe.get_doc(
 		{
@@ -335,7 +336,7 @@ def make_invoice(patient, company):
 	sales_invoice.set_missing_values()
 	return sales_invoice
 
-
+'''
 @frappe.whitelist()
 def get_patient_detail(patient):
 	patient_dict = frappe.db.sql("""select * from tabPatient where name=%s""", (patient), as_dict=1)
@@ -374,12 +375,12 @@ def get_timeline_data(doctype, name):
 			name,
 		)
 	)
-
+	'''
 	customer = frappe.db.get_value(doctype, name, "customer")
 	if customer:
 		from erpnext.accounts.party import get_timeline_data
 
 		customer_timeline_data = get_timeline_data("Customer", customer)
 		patient_timeline_data.update(customer_timeline_data)
-
+	'''
 	return patient_timeline_data
