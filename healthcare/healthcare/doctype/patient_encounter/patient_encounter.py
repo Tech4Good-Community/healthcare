@@ -15,7 +15,7 @@ from healthcare.healthcare.utils import get_medical_codes
 class PatientEncounter(Document):
 	def validate(self):
 		self.set_title()
-		self.validate_medications()
+		#self.validate_medications()
 		#self.validate_therapies()
 		#self.validate_observations()
 		set_codification_table_from_diagnosis(self)
@@ -26,9 +26,10 @@ class PatientEncounter(Document):
 			self.status = "Ordered"
 		'''
 	def on_update(self):
+		'''
 		if self.appointment:
 			frappe.db.set_value("Patient Appointment", self.appointment, "status", "Closed")
-
+		'''
 	def on_submit(self):
 		'''
 		if self.therapies:
@@ -37,9 +38,11 @@ class PatientEncounter(Document):
 		#self.make_service_request()
 		#self.make_medication_request()
 		# to save service_request name in prescription
+		print(self)
 		self.save("Update")
 		self.db_set("status", "Completed")
-		create_material_issue_stock_entry(self)
+		if self.drug_prescription:
+			create_material_issue_stock_entry(self)
 
 	def before_cancel(self):
 		orders = frappe.get_all("Service Request", {"order_group": self.name})
@@ -50,10 +53,10 @@ class PatientEncounter(Document):
 
 	def on_cancel(self):
 		self.db_set("status", "Cancelled")
-
+		'''
 		if self.appointment:
 			frappe.db.set_value("Patient Appointment", self.appointment, "status", "Open")
-
+		'''
 		if self.inpatient_record and self.drug_prescription:
 			delete_ip_medication_order(self)
 
@@ -137,7 +140,6 @@ class PatientEncounter(Document):
 
 		if plan_item.type == "Observation Template":
 			self.append("lab_test_prescription", {"observation_template": plan_item.template})
-	'''
 	def validate_medications(self):
 		if not self.drug_prescription:
 			return
@@ -147,7 +149,7 @@ class PatientEncounter(Document):
 				frappe.throw(
 					_("Row #{0} (Drug Prescription): Medication or Item Code is mandatory").format(item.idx)
 				)
-	'''
+
 	def validate_therapies(self):
 		if not self.therapies:
 			return
@@ -441,7 +443,7 @@ def create_material_issue_stock_entry(doc):
     stock_entry = frappe.new_doc("Stock Entry")
     stock_entry.stock_entry_type = "Material Issue"
     stock_entry.purpose = "Material Issue"
-    stock_entry.from_warehouse = "Stores - T4GC"  # Replace with the actual warehouse
+    stock_entry.from_warehouse = "Stores - CMID"  # Replace with the actual warehouse
     # stock_entry.to_warehouse = "Your Target Warehouse"    # Replace with the actual warehouse
     stock_entry.patient_encounter = doc.name
 

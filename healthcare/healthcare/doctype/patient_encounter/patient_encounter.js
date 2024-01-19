@@ -36,10 +36,12 @@ frappe.ui.form.on('Patient Encounter', {
 			{fieldname: 'period', columns: 2},
 			{fieldname: 'dosage_form', columns: 2}
 		];
+		/*
 		if (frappe.meta.get_docfield('Drug Prescription', 'medication').in_list_view === 1) {
 			frm.get_field('drug_prescription').grid.editable_fields.splice(0, 0, {fieldname: 'medication', columns: 3});
 			frm.get_field('drug_prescription').grid.editable_fields.splice(2, 1); // remove item description
 		}
+		*/
 	},
 
 	refresh: function(frm) {
@@ -644,6 +646,7 @@ var apply_code_sm_filter_to_child = function(frm, field, table_list, code_system
 }
 
 
+
 frappe.ui.form.on('Drug Prescription', {
     drug_id: function(frm, cdt, cdn) {
         var row = locals[cdt][cdn];
@@ -658,7 +661,7 @@ frappe.ui.form.on('Drug Prescription', {
                 callback: function(response) {
                     if (!response.exc) {
                         // Update the available_qty field based on the API response
-                        console.log(response.message)
+                        //console.log(response.message)
                         let stock=response.message
                         let indicator = "green"
                         if(stock===0)
@@ -682,7 +685,58 @@ frappe.ui.form.on('Drug Prescription', {
                     }
                     
                 }
-            });
+             });
         }
-    }
+    },
+
+
+//drug qty validation
+precribed_quantity: function(frm, cdt, cdn) {
+	var row = locals[cdt][cdn];
+	var precribed_quantity = row.precribed_quantity;
+
+	if(precribed_quantity===null || precribed_quantity==0){
+		//
+		alert("null or 0");
+	}
+	
+	if(row.precribed_quantity>0){
+		//alert("qty"+row.precribed_quantity);
+		frappe.call({
+			method: 'healthcare.healthcare.doctype.patient.api.get_stock_availability',  // Replace with your actual method path
+			args: {
+				drug_id: row.drug_id
+			},
+			callback: function(response) {
+				if (!response.exc) {
+					// Update the available_qty field based on the API response
+					
+					let stock=response.message;				
+					if(precribed_quantity>stock)
+					{
+						//frappe.show_alert("Prescribed quantity is greated than available stock \n The available quantity is "+stock);
+						frappe.show_alert({
+							message:__('Prescribed quantity is greater than available stock \n The available quantity is '+stock),
+							indicator:'red',
+	
+						}, 5);
+            			
+						return false;
+					}
+			
+				}
+				
+			}
+		 });
+	
+		
+	
+	}
+	
+	
+}
+
+
 });
+
+

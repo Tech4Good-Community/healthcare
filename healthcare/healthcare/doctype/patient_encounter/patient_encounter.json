@@ -11,8 +11,6 @@
  "field_order": [
   "naming_series",
   "title",
-  "appointment",
-  "appointment_type",
   "patient",
   "patient_name",
   "patient_sex",
@@ -20,7 +18,6 @@
   "inpatient_record",
   "inpatient_status",
   "column_break_6",
-  "company",
   "status",
   "encounter_date",
   "encounter_time",
@@ -31,6 +28,7 @@
   "invoiced",
   "submit_orders_on_save",
   "referred_to_others",
+  "patient_referral",
   "sb_symptoms",
   "symptoms",
   "symptoms_in_print",
@@ -62,15 +60,6 @@
    "label": "Series",
    "no_copy": 1,
    "options": "HLC-ENC-.YYYY.-",
-   "set_only_once": 1
-  },
-  {
-   "fieldname": "appointment",
-   "fieldtype": "Link",
-   "ignore_user_permissions": 1,
-   "label": "Appointment",
-   "options": "Patient Appointment",
-   "search_index": 1,
    "set_only_once": 1
   },
   {
@@ -214,17 +203,6 @@
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "appointment_type",
-   "fieldtype": "Link",
-   "ignore_user_permissions": 1,
-   "label": "Appointment Type",
-   "no_copy": 1,
-   "options": "Appointment Type",
-   "print_hide": 1,
-   "read_only": 1,
-   "report_hide": 1
-  },
-  {
    "fetch_from": "practitioner.department",
    "fieldname": "medical_department",
    "fieldtype": "Link",
@@ -306,11 +284,18 @@
    "fieldtype": "Table",
    "label": "Tests ",
    "options": "Patient Test"
+  },
+  {
+   "depends_on": "eval: doc.referred_to_others == true;",
+   "fieldname": "patient_referral",
+   "fieldtype": "Link",
+   "label": "Patient Referral",
+   "options": "Patient Referral"
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2024-01-02 15:32:06.865296",
+ "modified": "2024-01-19 16:23:10.129020",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Patient Encounter",

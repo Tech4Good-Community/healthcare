@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_copy": 1,
+ "autoname": "format:{drug_name}-{####}",
  "creation": "2016-09-16 16:41:45.533374",
  "doctype": "DocType",
  "document_type": "Document",
@@ -12,18 +13,12 @@
   "dosage",
   "period",
   "precribed_quantity",
-  "medication",
   "column_break_7",
-  "strength",
   "dosage_by_interval",
   "interval",
   "interval_uom",
   "strength_uom",
   "number_of_repeats_allowed",
-  "section_break_u9av",
-  "intent",
-  "priority",
-  "medication_request",
   "section_break_13",
   "comment",
   "update_schedule"
@@ -56,8 +51,7 @@
    "ignore_user_permissions": 1,
    "in_list_view": 1,
    "label": "Period",
-   "options": "Prescription Duration",
-   "reqd": 1
+   "options": "Prescription Duration"
   },
   {
    "fetch_from": "medication.dosage_form",
@@ -108,19 +102,6 @@
    "options": "\nHour\nDay"
   },
   {
-   "fieldname": "medication",
-   "fieldtype": "Link",
-   "label": "Medication",
-   "options": "Medication"
-  },
-  {
-   "fetch_from": "medication.strength",
-   "fieldname": "strength",
-   "fieldtype": "Float",
-   "label": "Strength",
-   "read_only_depends_on": "eval: doc.medication"
-  },
-  {
    "depends_on": "strength",
    "fetch_from": "medication.strength_uom",
    "fieldname": "strength_uom",
@@ -145,30 +126,6 @@
    "label": "Number Of Repeats Allowed"
   },
   {
-   "fieldname": "section_break_u9av",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "intent",
-   "fieldtype": "Link",
-   "label": "Intent",
-   "options": "Code Value"
-  },
-  {
-   "fieldname": "priority",
-   "fieldtype": "Link",
-   "label": "Priority",
-   "options": "Code Value"
-  },
-  {
-   "allow_on_submit": 1,
-   "fieldname": "medication_request",
-   "fieldtype": "Data",
-   "label": "Medication Request",
-   "no_copy": 1,
-   "read_only": 1
-  },
-  {
    "fieldname": "precribed_quantity",
    "fieldtype": "Int",
    "in_list_view": 1,
@@ -184,10 +141,11 @@
  ],
  "istable": 1,
  "links": [],
- "modified": "2024-01-02 16:17:01.952245",
+ "modified": "2024-01-19 16:43:01.777424",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Drug Prescription",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [],
  "restrict_to_domain": "Healthcare",
