@@ -28,7 +28,6 @@
   "inpatient_status",
   "mobile",
   "phone",
-  "email",
   "invite_user",
   "user_id",
   "sector_of_employement",
@@ -155,16 +154,6 @@
    "options": "Phone"
   },
   {
-   "bold": 1,
-   "fieldname": "email",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "in_standard_filter": 1,
-   "label": "Email",
-   "no_copy": 1,
-   "options": "Email"
-  },
-  {
    "fieldname": "phone",
    "fieldtype": "Data",
    "in_filter": 1,
@@ -227,10 +216,11 @@
   },
   {
    "fieldname": "occupation",
-   "fieldtype": "Data",
+   "fieldtype": "Select",
    "ignore_xss_filter": 1,
    "label": "Occupation",
-   "no_copy": 1
+   "no_copy": 1,
+   "options": "\nBoiler Operator\nBrick Worker\nCleaning Worker\nClipper\nConstruction Worker\nCook\nDomestic Worker\nDriver\nFactory Employee\nFish Vendor\nHair Stylist\nHelper\nInland Fisher\nLoading/Unloading\nMarine Fisher\nPeeling Operator\nRag Picker\nSelf Emplpoyed\nSetter\nSrank\nStudent\nSupervisor\nUnable to Work\nUnemployed\nWaiter\nWelder\nOther Worker"
   },
   {
    "fieldname": "column_break_25",
@@ -439,7 +429,7 @@
  "image_field": "image",
  "links": [],
  "max_attachments": 50,
- "modified": "2024-01-19 16:58:02.109424",
+ "modified": "2024-01-19 19:37:49.251179",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Patient",
@@ -496,7 +486,7 @@
   }
  ],
  "restrict_to_domain": "Healthcare",
- "search_fields": "patient_name,mobile,email,phone,uid",
+ "search_fields": "patient_name,mobile,phone,uid",
  "show_name_in_global_search": 1,
  "sort_field": "modified",
  "sort_order": "ASC",

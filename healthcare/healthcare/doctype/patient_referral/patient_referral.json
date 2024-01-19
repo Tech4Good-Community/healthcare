@@ -84,7 +84,7 @@
    "label": "Patient Details"
   },
   {
-   "fetch_from": "patient_details.sex",
+   "fetch_from": "patient_details.gender",
    "fieldname": "sex",
    "fieldtype": "Data",
    "label": "Sex"
@@ -135,7 +135,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-01-02 12:48:48.176828",
+ "modified": "2024-01-19 19:40:07.737098",
  "modified_by": "Administrator",
  "module": "Healthcare",
  "name": "Patient Referral",
