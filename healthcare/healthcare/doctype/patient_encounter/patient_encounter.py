@@ -18,7 +18,7 @@ class PatientEncounter(Document):
 		#self.validate_medications()
 		#self.validate_therapies()
 		#self.validate_observations()
-		set_codification_table_from_diagnosis(self)
+		#set_codification_table_from_diagnosis(self)
 		'''
 		if not self.is_new() and self.submit_orders_on_save:
 			self.make_service_request()

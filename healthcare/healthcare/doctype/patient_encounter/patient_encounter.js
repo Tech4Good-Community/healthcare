@@ -265,8 +265,8 @@ frappe.ui.form.on('Patient Encounter', {
 			};
 			frm.set_value(values);
 		}
-	},
-
+	}
+	/*
 	get_applicable_treatment_plans: function(frm) {
 		frappe.call({
 			method: 'get_applicable_treatment_plans',
@@ -299,6 +299,8 @@ frappe.ui.form.on('Patient Encounter', {
 		});
 	},
 
+});
+*/
 });
 
 var schedule_inpatient = function(frm) {
